@@ -15,7 +15,21 @@ const YtDlpNotInstalled = require('../exceptions/YtDlpNotInstalled');
  *
  * @param {string} query
  */
-const dlArguments = (query) => ['-f', '140', '--dump-json', query];
+ let dlProxyArguments;
+ if (process.env.HTTP_PROXY_IP && process.env.HTTP_PROXY_PORT) {
+	 dlProxyArguments = `${process.env.HTTP_PROXY_IP}:${process.env.HTTP_PROXY_PORT}`;
+ } else {
+	 dlProxyArguments = '127.0.0.1:1082';
+ }
+ 
+ const dlArguments = (query) => {
+	 if (process.env.YT_DLP_PROXY_ENABLED) {
+		 return ['--proxy', dlProxyArguments, '-f', '140', '--dump-json', query];
+	 } else {
+		 return ['-f', '140', '--dump-json', query];
+	 }
+ };
+ 
 /** @param {string} keyword */
 const byKeyword = (keyword) => `ytsearch1:${keyword}`;
 const logger = logScope('provider/yt-dlp');

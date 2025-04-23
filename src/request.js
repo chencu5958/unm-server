@@ -9,6 +9,22 @@ const format = require('url').format;
 
 const logger = logScope('request');
 const timeoutThreshold = 10 * 1000;
+
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+const HttpsProxyAgent = require('https-proxy-agent').HttpsProxyAgent;
+// 代理服务器的地址和端口
+let proxyHost;
+let proxyPort;
+if (process.env.HTTP_PROXY_ENABLED) {
+	if (process.env.HTTP_PROXY_IP && process.env.HTTP_PROXY_PORT) {
+		proxyHost = process.env.HTTP_PROXY_IP;
+		proxyPort = process.env.HTTP_PROXY_PORT;
+	} else {
+		proxyHost = '127.0.0.1'
+		proxyPort = 1082;
+	}
+}
+
 const translate = (host) => (global.hosts || {})[host] || host;
 const create = (url, proxy) =>
 	(((typeof proxy === 'undefined' ? global.proxy : proxy) || url).protocol ===
@@ -52,6 +68,18 @@ const configure = (method, url, headers, proxy) => {
 		options.hostname = translate(url.hostname);
 		options.port = url.port || (url.protocol === 'https:' ? 443 : 80);
 		options.path = url.path;
+	}
+
+	if (
+		(url.hostname.endsWith('googlevideo.com') ||
+			url.hostname.endsWith('youtube.com')) &&
+		url.protocol === 'https:'
+	) 
+	if (process.env.HTTP_PROXY_ENABLED) {
+		options.agent = new HttpsProxyAgent({
+			host: proxyHost,
+			port: proxyPort,
+		});
 	}
 	return options;
 };
