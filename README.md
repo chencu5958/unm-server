@@ -206,10 +206,10 @@ node app.js -o bilibili ytdlp
 | SIGN_KEY              | path | 自定义密钥文件                                                                                          | `SIGN_KEY="./server.key"`                                        |
 | SEARCH_ALBUM          | bool | 在其他音源搜索歌曲时携带专辑名称（默认搜索条件 `歌曲名 - 歌手`，启用后搜索条件 `歌曲名 - 歌手 专辑名`） | `SEARCH_ALBUM=true`                                              |
 | NETEASE_COOKIE        | str  | 网易云 Cookie                                                                                           | `MUSIC_U=007554xxx`                                              |
-| HTTP_PROXY_IP | str  | 代理服务器 IP 地址                                                                                      | `HTTP_PROXY_IP=127.0.0.1`                                      |
-| HTTP_PROXY_PORT | int  | 代理服务器端口                                                                                      | `HTTP_PROXY_PORT=1082`                                          |
-| HTTP_PROXY_ENABLE | bool  | HTTP代理开关                                                                                    | `HTTP_PROXY_ENABLE=true`                                |
-| YT_DLP_PROXY_ENABLED | bool  | 是否启用 yt-dlp 代理                                                                                      | `YT_DLP_PROXY_ENABLED=true`                                      |
+| HTTP_PROXY_IP         | str  | 代理服务器 IP 地址                                                                                      | `HTTP_PROXY_IP=127.0.0.1`                                        |
+| HTTP_PROXY_PORT       | int  | 代理服务器端口                                                                                          | `HTTP_PROXY_PORT=1082`                                           |
+| HTTP_PROXY_ENABLE     | bool | HTTP代理开关                                                                                            | `HTTP_PROXY_ENABLE=true`                                         |
+| YT_DLP_PROXY_ENABLED  | bool | 是否启用 yt-dlp 代理                                                                                    | `YT_DLP_PROXY_ENABLED=true`                                      |
 
 #### 日志等级 (`LOG_LEVEL`)
 

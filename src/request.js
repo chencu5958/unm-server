@@ -20,7 +20,7 @@ if (process.env.HTTP_PROXY_ENABLED) {
 		proxyHost = process.env.HTTP_PROXY_IP;
 		proxyPort = process.env.HTTP_PROXY_PORT;
 	} else {
-		proxyHost = '127.0.0.1'
+		proxyHost = '127.0.0.1';
 		proxyPort = 1082;
 	}
 }
@@ -74,13 +74,13 @@ const configure = (method, url, headers, proxy) => {
 		(url.hostname.endsWith('googlevideo.com') ||
 			url.hostname.endsWith('youtube.com')) &&
 		url.protocol === 'https:'
-	) 
-	if (process.env.HTTP_PROXY_ENABLED) {
-		options.agent = new HttpsProxyAgent({
-			host: proxyHost,
-			port: proxyPort,
-		});
-	}
+	)
+		if (process.env.HTTP_PROXY_ENABLED) {
+			options.agent = new HttpsProxyAgent({
+				host: proxyHost,
+				port: proxyPort,
+			});
+		}
 	return options;
 };
 
