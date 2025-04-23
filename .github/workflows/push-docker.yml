@@ -3,7 +3,8 @@ name: Build cross-platform docker image
 on:
     push:
         branches:
-            - 'enhanced'
+            - enhanced
+            - nex
         paths:
             - '.github/workflows/push-docker.yml'
             - 'precompiled/**'

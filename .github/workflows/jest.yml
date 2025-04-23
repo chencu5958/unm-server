@@ -3,7 +3,8 @@ name: Test UNM with Jest
 on:
     push:
         branches:
-            - 'enhanced'
+            - enhanced
+            - nex
         paths:
             - '*.js'
             - 'package.json'

@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - enhanced
+            - nex
         paths-ignore:
             - 'precompiled/**'
     workflow_dispatch:

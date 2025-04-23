@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - enhanced
+            - nex
         paths:
             - '*.js'
             - 'src/**.js'
